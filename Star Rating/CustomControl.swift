@@ -22,7 +22,7 @@ class CustomControl: UIControl {
     }
     
     private let componentDimension: CGFloat = 40.0
-    private let componentCount = 5
+    private let componentCount = 6
     private let componentActiveColor = UIColor.black
     private let componentInactiveColor = UIColor.gray
     

@@ -13,6 +13,7 @@ class CustomControl: UIControl {
     
     var value: Int = 1
     var labelArray: [UILabel] = []
+    var isFlipped: Bool = true
     
     override var intrinsicContentSize: CGSize {
         let componentsWidth = CGFloat(componentCount) * componentDimension
@@ -34,27 +35,34 @@ class CustomControl: UIControl {
     
     func setup() {
         var paddingToAdd: CGFloat = 8.0
+        var tagCount = componentCount
         
         for x in stride(from: 1, to: componentCount + 1, by: 1) {
             
             let label = UILabel()
             
-            label.tag = x
+            if isFlipped {
+                label.tag = tagCount
+            } else {
+                label.tag = x
+            }
+            
             label.text = "☆"
             label.font = UIFont.boldSystemFont(ofSize: 32.0)
             label.textAlignment = .center
+            label.frame = CGRect(x: paddingToAdd, y: 0, width: componentDimension, height: componentDimension)
             
-            if x == 1 {
-                label.frame = CGRect(x: paddingToAdd, y: 0, width: componentDimension, height: componentDimension)
+            if label.tag == 1 {
                 label.textColor = componentActiveColor
             } else {
-                label.frame = CGRect(x: paddingToAdd, y: 0, width: componentDimension, height: componentDimension)
                 label.textColor = componentInactiveColor
             }
             
             labelArray.append(label)
             self.addSubview(label)
+
             paddingToAdd += 8.0 + componentDimension
+            tagCount -= 1
         }
     }
     

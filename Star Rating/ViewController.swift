@@ -21,8 +21,6 @@ class ViewController: UIViewController {
         } else {
             title = "User Rating: \(sender.value) stars"
         }
-        
     }
-    
 }
 

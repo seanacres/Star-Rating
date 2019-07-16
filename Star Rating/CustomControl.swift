@@ -77,8 +77,11 @@ class CustomControl: UIControl {
             label.textColor = componentActiveColor
             
             if label.frame.contains(touch.location(in: self)) {
+                if value != label.tag {
+                    label.performFlare()
+                }
+                
                 value = label.tag
-                label.performFlare()
             }
             
             if label.tag > value {
